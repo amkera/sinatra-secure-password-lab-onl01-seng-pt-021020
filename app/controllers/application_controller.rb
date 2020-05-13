@@ -12,15 +12,18 @@ class ApplicationController < Sinatra::Base
   get "/" do
     erb :index
   end
+  #just renders the homepage
 
   get "/signup" do
     erb :signup
   end
+  #renders or shows the signup page, where user can input data regarding their signup
 
   post "/signup" do
     if params[:username]=="" || params[:password]==""
       redirect to '/failure'
     end
+    #redirect to failure 
 
     user = User.new(:username => params[:username], :password => params[:password])
     if user.save
