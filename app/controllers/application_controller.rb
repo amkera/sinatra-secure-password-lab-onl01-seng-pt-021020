@@ -40,11 +40,13 @@ class ApplicationController < Sinatra::Base
     @user = User.find(session[:user_id])
     erb :account
   end
+  #show their account page, and show the correct account page by finding the user based on their session id 
 
 
   get "/login" do
     erb :login
   end
+  #show the login page
 
   post "/login" do
     user = User.find_by(:username => params[:username])
@@ -56,6 +58,7 @@ class ApplicationController < Sinatra::Base
 			redirect to "/failure"
 		end
   end
+  #process their login information, and authenticate their password. 
 
   get "/success" do
     if logged_in?
